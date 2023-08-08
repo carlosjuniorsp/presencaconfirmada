@@ -17,7 +17,7 @@
         <div class="field">
           <label class="label">Nº de crianças</label>
           <div class="control">
-            <input class="input" type="number" placeholder="Seu nome Completo">
+            <input class="input" type="number" placeholder="Número de crianças que irão à festa">
           </div>
         </div>
 
