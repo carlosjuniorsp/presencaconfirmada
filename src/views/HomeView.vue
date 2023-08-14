@@ -49,6 +49,10 @@
               <button class="button is-link">Confirmar Presença</button>
             </div>
           </div>
+
+          <div v-if="this.errors" class="notification is-danger is-light">
+            {{ this.errors }}
+          </div>
         </div>
       </form>
 
@@ -69,31 +73,36 @@ export default {
         telefone: '',
         observacao: null,
         numero_criancas: '',
-      }
+      },
+      errors: "",
     }
   },
   methods: {
     salvar() {
+      /*
       if (this.confirmados.termos != true) {
         Swal.fire('Você precisa aceitar os termos da festa');
       } else {
-        Confirmado.salvar(this.confirmados).then(resposta => {
-          this.confirmados = {}
-          console.log(resposta.message)
-          Swal.fire({
-            title: 'Sua Presença foi Confirmada, Obrigado!',
-            width: 600,
-            padding: '3em',
-            color: '#333',
-            backdrop: `
+        */
+      Confirmado.salvar(this.confirmados).then(resposta => {
+        this.confirmados = {}
+        console.log(resposta.message)
+        Swal.fire({
+          title: 'Sua Presença foi Confirmada, Obrigado!',
+          width: 600,
+          padding: '3em',
+          color: '#333',
+          backdrop: `
             rgb(237 237 237 / 13%)
             url("src/img/yoshi-run.gif")
             right bottom
             no-repeat
           `
-          })
         })
-      }
+      }).catch(error => {
+        this.errors = error.response.data.message
+      })
+      //}
     }
   }
 }

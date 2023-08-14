@@ -27,6 +27,10 @@ class StoreUpdateConfirmadosRequest extends FormRequest
                 'min:3',
                 'max:255'
             ],
+            'numero_criancas' => [
+                'required',
+                'min:1'
+            ],
             'telefone' => [
                 'required',
                 'unique:confirmados',
@@ -36,9 +40,6 @@ class StoreUpdateConfirmadosRequest extends FormRequest
             'observacao' => [
                 'max:255'
             ],
-            'numero_criancas' => [
-                'required',
-            ]
         ];
     }
 }
