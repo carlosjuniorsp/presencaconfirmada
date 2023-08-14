@@ -1,6 +1,4 @@
-<script setup lang="ts">
 
-</script>
 
 <template>
   <div class="column-center">
@@ -54,4 +52,14 @@
   </div>
 </template>
 
+<script>
+import Confirmado from './services/confirmados'
+export default {
+  mounted() {
+    Confirmado.listar().then(resposta => {
+      console.log(resposta)
+    })
+  }
+}
+</script>
 

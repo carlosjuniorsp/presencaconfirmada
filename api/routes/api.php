@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfirmadosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -25,3 +26,6 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
+Route::get('/confirmados', [ConfirmadosController::class, 'index']);
+Route::post('/confirmados', [ConfirmadosController::class, 'store']);
