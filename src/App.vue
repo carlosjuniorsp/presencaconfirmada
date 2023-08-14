@@ -1,24 +1,20 @@
 
 
 <template>
-  <router-view/>
+  <div class="principal">
+    <router-view/>
+  </div>
 </template> 
 
-<script>
-import Confirmado from './services/confirmados'
-
+<script lang="ts">
 export default {
 
-  data() {
-    return {
-      confirmados: []
-    }
-  },
-  mounted() {
-    Confirmado.listar().then(resposta => {
-      this.confirmados = resposta.data
-    })
-  }
+ 
 }
 </script>
 
+<style>
+  .principal{
+    padding: 10px;
+  }
+</style>
