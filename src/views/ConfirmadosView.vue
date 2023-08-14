@@ -13,6 +13,7 @@
         <tr class="lista-confirmados" v-for="convidados of confirmados" :key="convidados.id">
           <th>{{ convidados.nome }}</th>
           <td>{{ convidados.telefone }}</td>
+          <td>{{ convidados.numero_criancas }}</td>
           <td>{{ convidados.observacao }}</td>
         </tr>
       </tbody>

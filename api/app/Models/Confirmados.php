@@ -19,5 +19,6 @@ class Confirmados extends Model
         'nome',
         'telefone',
         'observacao',
+        'numero_criancas',
     ];
 }

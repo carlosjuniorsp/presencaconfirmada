@@ -36,6 +36,9 @@ class StoreUpdateConfirmadosRequest extends FormRequest
             'observacao' => [
                 'min:5',
                 'max:255'
+            ],
+            'numero_criancas' => [
+                'required',
             ]
         ];
     }

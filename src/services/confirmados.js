@@ -1,8 +1,11 @@
-import { Script } from 'vm'
-import { http} from './config'
+import { http } from './config'
 
 export default {
-    listar:() => {
+    listar: () => {
         return http.get('confirmados')
+    },
+    salvar: (listaConfirmados) => {
+        return http.post('confirmados', listaConfirmados)
     }
+
 }
