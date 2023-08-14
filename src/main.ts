@@ -9,13 +9,7 @@ import 'bulma/css/bulma.css';
 
 const app = createApp(App)
 
-
-
 app.use(createPinia())
 app.use(router)
 
-const cors = require('cors');
-app.use(cors({
-    origin: 'https://www.section.io'
-}));
 app.mount('#app')
