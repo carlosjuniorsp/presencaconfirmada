@@ -15,7 +15,8 @@
           <div class="field">
             <label class="label">Nº de crianças</label>
             <div class="control">
-              <input class="input" type="number" placeholder="Número de crianças que irão à festa" v-model="confirmados.numero_criancas">
+              <input class="input" type="number" placeholder="Número de crianças que irão à festa"
+                v-model="confirmados.numero_criancas">
             </div>
           </div>
 
@@ -29,14 +30,15 @@
           <div class="field">
             <label class="label">Observação</label>
             <div class="control">
-              <textarea class="textarea" placeholder="Observação, caso tenha!" v-model="confirmados.observacao"></textarea>
+              <textarea class="textarea" placeholder="Observação, caso tenha!"
+                v-model="confirmados.observacao"></textarea>
             </div>
           </div>
 
           <div class="field">
             <div class="control">
               <label class="checkbox">
-                <input type="checkbox">
+                <input type="checkbox" v-model="confirmados.termos">
                 Estou de acordo com os <a href="#">termos e condições da festa</a>
               </label>
             </div>
@@ -57,6 +59,7 @@
 
 <script>
 import Confirmado from '../services/confirmados.js'
+import Swal from 'sweetalert2';
 
 export default {
   data() {
@@ -64,16 +67,33 @@ export default {
       confirmados: {
         nome: '',
         telefone: '',
-        observacao: '',
+        observacao: null,
         numero_criancas: '',
       }
     }
   },
   methods: {
-    salvar(){
-      Confirmado.salvar(this.confirmados).then(resposta => {
-        alert("Obrigado, Sua presença foi confirmada!!!");
-    })
+    salvar() {
+      if (this.confirmados.termos != true) {
+        Swal.fire('Você precisa aceitar os termos da festa');
+      } else {
+        Confirmado.salvar(this.confirmados).then(resposta => {
+          this.confirmados = {}
+          console.log(resposta.message)
+          Swal.fire({
+            title: 'Sua Presença foi Confirmada, Obrigado!',
+            width: 600,
+            padding: '3em',
+            color: '#333',
+            backdrop: `
+            rgb(237 237 237 / 13%)
+            url("src/img/yoshi-run.gif")
+            right bottom
+            no-repeat
+          `
+          })
+        })
+      }
     }
   }
 }
