@@ -37,8 +37,7 @@
 
           <div class="field">
             <div class="control">
-              <label class="checkbox">
-                <input type="checkbox">
+              <label class="termos">
                 Estou de acordo com os <a href="#">termos e condições da festa</a>
               </label>
             </div>
@@ -60,7 +59,6 @@
   </div>
 </template>
 
-
 <script lang="ts">
 import api from '@/services/config';
 import Swal from 'sweetalert2';
@@ -73,8 +71,8 @@ export default defineComponent({
     return {
       confirmados: {
         nome: '',
-        telefone: 0,
-        numero_criancas: 0,
+        telefone: '',
+        numero_criancas: 1,
         observacao: ''
       },
       errors: "",
@@ -104,4 +102,5 @@ export default defineComponent({
     }
   }
 });
+
 </script>

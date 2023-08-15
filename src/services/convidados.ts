@@ -1,6 +1,6 @@
 export interface ListaConfirmados{
     nome: string;
-    telefone: number;
+    telefone: string | number;
     numero_criancas: number,
     observacao?: string,
 }
