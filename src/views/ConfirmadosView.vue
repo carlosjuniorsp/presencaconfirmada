@@ -10,8 +10,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="lista-confirmados" v-for="(convidados, i ) in confirmados" :key="i">
-          <th>{{ convidados.nome}}</th>
+        <tr v-if="confirmados" class="lista-confirmados" v-for="convidados in confirmados">
+          <th>{{ convidados.nome }}</th>
           <td>{{ convidados.telefone }}</td>
           <td>{{ convidados.numero_criancas }}</td>
           <td>{{ convidados.observacao }}</td>
@@ -24,18 +24,21 @@
 <script lang="ts">
 import api from '@/services/config';
 import { defineComponent, ref, onMounted } from 'vue';
+import type { ListaConfirmados } from '@/services/convidados';
+interface exibeDados {
+  data: ListaConfirmados
+}
 
 export default defineComponent({
   name: "Confirmados",
   setup() {
-    const confirmados = ref([]);
-    const total = ref([]);
+    const confirmados = ref<exibeDados>();
+    const total = ref<exibeDados>();
     const fetchConfirmados = () => api.get("confirmados").then((response) => (
-      confirmados.value = response.data.data,
-      total.value = response.data.data.length
+      confirmados.value = response.data.data
     ));
     onMounted(fetchConfirmados);
-    return { confirmados, total};
+    return { confirmados, total };
   }
 });
 </script>
