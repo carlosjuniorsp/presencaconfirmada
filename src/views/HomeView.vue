@@ -2,7 +2,7 @@
 <template>
   <div class="column-center">
     <div class="columns">
-      <div class="column"> <img alt="Vue logo" class="logo" src="@/img/convite.jpg" /></div>
+      <div class="column"> <img alt="Vue logo" class="logo" src="@/assets/convite.jpg" /></div>
       <form @submit.prevent="salvar">
         <div class="column">
           <div class="field">
@@ -91,7 +91,7 @@ export default defineComponent({
           backdrop:
             `
             rgb(237 237 237 / 13%)
-            url("src/img/yoshi-run.gif")
+            url("../src/assets/mario.gif")
             right bottom
             no-repeat
           `

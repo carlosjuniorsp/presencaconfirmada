@@ -12,11 +12,8 @@ const router = createRouter({
     },
     {
       path: '/confirmados',
-      name: 'confirmados',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ConfirmadosView.vue')
+      name: 'Confirmados',
+      component: ConfirmadosView
     }
   ]
 })
