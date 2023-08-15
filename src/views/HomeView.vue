@@ -23,7 +23,7 @@
           <div class="field">
             <label class="label">WhatsApp</label>
             <div class="control">
-              <input class="input" type="tel" placeholder="(11) 9999-9999" v-model="confirmados.telefone">
+              <input class="input" maxlength="11" minlength="11" type="tel" placeholder="(11) 9999-9999" v-model="confirmados.telefone">
             </div>
           </div>
 
