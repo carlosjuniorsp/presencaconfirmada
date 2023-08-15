@@ -1,7 +1,7 @@
 
 <template>
   <div class="column-center">
-    <div class="columns is-mobile">
+    <div class="columns">
       <div class="column"> <img alt="Vue logo" class="logo" src="@/img/convite.jpg" /></div>
       <form @submit.prevent="salvar">
         <div class="column">
@@ -48,11 +48,12 @@
             <div class="control">
               <button class="button is-link">Confirmar Presença</button>
             </div>
-          </div>
 
-          <div v-if="this.errors" class="notification is-danger is-light">
-            {{ this.errors }}
           </div>
+          <br>
+          <span class="msgs">
+            *Ao confirmar sua presença você concorda com os termos da festa
+          </span>
         </div>
       </form>
 
@@ -79,29 +80,28 @@ export default {
   },
   methods: {
     salvar() {
-      if (this.confirmados.termos != true) {
-        Swal.fire('Você precisa aceitar os termos da festa');
-      } else {
-        Confirmado.salvar(this.confirmados).then(resposta => {
-          this.confirmados = {}
-          this.errors = ""
-          Swal.fire({
-            title: 'Sua Presença foi Confirmada, Obrigado!',
-            width: 600,
-            padding: '3em',
-            color: '#333',
-            backdrop: `
+      Confirmado.salvar(this.confirmados).then(resposta => {
+        this.confirmados = {}
+        this.errors = ""
+        Swal.fire({
+          title: 'Sua Presença foi Confirmada, Obrigado!',
+          padding: '3em',
+          width: '600',
+          color: '#333',
+          backdrop: `
             rgb(237 237 237 / 13%)
             url("src/img/yoshi-run.gif")
             right bottom
             no-repeat
           `
-          })
-        }).catch(error => {
-          this.errors = error.response.data.message
         })
-      }
+      }).catch(error => {
+        Swal.fire(error.response.data.message)
+      })
     }
   }
 }
 </script>
+<style>
+
+</style>

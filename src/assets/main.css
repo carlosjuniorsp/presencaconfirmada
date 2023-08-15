@@ -1,7 +1,33 @@
 @import './base.css';
 
-.column-center{
+.column-center {
   margin: 0 auto;
-  max-width: 60%;
-  padding:10px;
+  padding: 10px;
 }
+
+.swal2-popup {
+  font-size: 0.6rem !important;
+  font-family: Georgia, serif;
+}
+
+
+@media screen and (min-width: 375px) {
+  .column-center {
+    width: 98%;
+  }
+
+  .msgs{
+    background-color: #eff5fb;
+    padding: 5px;
+    width: 100%;
+    display: inline-block;
+  }
+}
+
+
+@media screen and (min-width: 1024px) {
+  .column-center {
+    width: 65%;
+  }
+}
+
