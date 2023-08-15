@@ -23,7 +23,6 @@
 
 <script lang="ts">
 import api from '@/services/config';
-import Swal from 'sweetalert2';
 import { defineComponent, ref, onMounted } from 'vue';
 
 export default defineComponent({

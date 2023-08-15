@@ -65,19 +65,26 @@
 import api from '@/services/config';
 import Swal from 'sweetalert2';
 import { defineComponent } from 'vue';
+import type { ListaConfirmados } from '@/services/convidados';
 
 export default defineComponent({
   name: "Home",
   data() {
     return {
-      confirmados: {},
+      confirmados: {
+        nome: '',
+        telefone: 0,
+        numero_criancas: 0,
+        observacao: ''
+      },
       errors: "",
     }
   },
+
   methods: {
     salvar() {
-      api.post("confirmados", this.confirmados).then((response) => (
-        this.confirmados = {},
+      let itens: ListaConfirmados = this.confirmados;
+      api.post("confirmados", itens).then((response) => (
         Swal.fire({
           title: 'Sua Presença foi Confirmada, Obrigado!',
           padding: '3em',
