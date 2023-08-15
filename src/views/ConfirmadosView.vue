@@ -35,7 +35,8 @@ export default defineComponent({
     const confirmados = ref<exibeDados>();
     const total = ref<exibeDados>();
     const fetchConfirmados = () => api.get("confirmados").then((response) => (
-      confirmados.value = response.data.data
+      confirmados.value = response.data.data,
+      total.value = response.data.data.length
     ));
     onMounted(fetchConfirmados);
     return { confirmados, total };
