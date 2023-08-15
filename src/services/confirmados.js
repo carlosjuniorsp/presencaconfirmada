@@ -1,11 +1,10 @@
-import { http } from './config'
+import { api } from './config'
 
 export default {
     listar: () => {
-        return http.get('confirmados')
+        return api.get('confirmados')
     },
     salvar: (listaConfirmados) => {
-        return http.post('confirmados', listaConfirmados)
+        return api.post('confirmados', listaConfirmados)
     }
-
 }

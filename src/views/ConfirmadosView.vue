@@ -10,8 +10,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="lista-confirmados" v-for="convidados of confirmados" :key="convidados.id">
-          <th>{{ convidados.nome }}</th>
+        <tr class="lista-confirmados" v-for="(convidados, i ) in confirmados" :key="i">
+          <th>{{ convidados.nome}}</th>
           <td>{{ convidados.telefone }}</td>
           <td>{{ convidados.numero_criancas }}</td>
           <td>{{ convidados.observacao }}</td>
@@ -22,22 +22,21 @@
 </template>
 
 <script lang="ts">
-import Confirmado from '../services/confirmados.js'
+import api from '@/services/config';
+import Swal from 'sweetalert2';
+import { defineComponent, ref, onMounted } from 'vue';
 
-export default {
+export default defineComponent({
   name: "Confirmados",
-  data() {
-    return {
-      confirmados: [],
-      total: "",
-    }
-  },
-  mounted() {
-    Confirmado.listar().then(resposta => {
-      this.confirmados = resposta.data.data
-      this.total = resposta.data.data.length
-    })
+  setup() {
+    const confirmados = ref([]);
+    const total = ref([]);
+    const fetchConfirmados = () => api.get("confirmados").then((response) => (
+      confirmados.value = response.data.data,
+      total.value = response.data.data.length
+    ));
+    onMounted(fetchConfirmados);
+    return { confirmados, total};
   }
-}
+});
 </script>
-<style></style>

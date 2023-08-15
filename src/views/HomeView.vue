@@ -38,7 +38,7 @@
           <div class="field">
             <div class="control">
               <label class="checkbox">
-                <input type="checkbox" v-model="confirmados.termos">
+                <input type="checkbox">
                 Estou de acordo com os <a href="#">termos e condições da festa</a>
               </label>
             </div>
@@ -56,52 +56,45 @@
           </span>
         </div>
       </form>
-
     </div>
   </div>
 </template>
 
 
-<script>
-import Confirmado from '../services/confirmados.js'
+<script lang="ts">
+import api from '@/services/config';
 import Swal from 'sweetalert2';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
+  name: "Home",
   data() {
     return {
-      confirmados: {
-        nome: '',
-        telefone: '',
-        observacao: null,
-        numero_criancas: '',
-      },
+      confirmados: {},
       errors: "",
     }
   },
   methods: {
     salvar() {
-      Confirmado.salvar(this.confirmados).then(resposta => {
-        this.confirmados = {}
-        this.errors = ""
+      api.post("confirmados", this.confirmados).then((response) => (
+        this.confirmados = {},
         Swal.fire({
           title: 'Sua Presença foi Confirmada, Obrigado!',
           padding: '3em',
           width: '600',
           color: '#333',
-          backdrop: `
+          backdrop:
+            `
             rgb(237 237 237 / 13%)
             url("src/img/yoshi-run.gif")
             right bottom
             no-repeat
           `
         })
-      }).catch(error => {
-        Swal.fire(error.response.data.message)
-      })
+      )).catch((error) => {
+        Swal.fire(error.response.data.message);
+      });
     }
   }
-}
+});
 </script>
-<style>
-
-</style>

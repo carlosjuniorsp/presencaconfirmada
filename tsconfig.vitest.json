@@ -5,6 +5,6 @@
     "composite": true,
     "lib": [],
     "types": ["node", "jsdom", "vue-sweetalert2"],
-    "allowJs": true,
+    "allowJs": true   
   }
 }
