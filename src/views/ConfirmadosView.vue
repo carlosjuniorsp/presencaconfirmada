@@ -14,6 +14,7 @@
           <th>{{ convidados.nome }}</th>
           <td>{{ convidados.telefone }}</td>
           <td>{{ convidados.numero_criancas }}</td>
+          <td>{{ convidados.numero_adultos }}</td>
           <td>{{ convidados.observacao }}</td>
         </tr>
       </tbody>

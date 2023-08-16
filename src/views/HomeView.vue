@@ -13,6 +13,14 @@
           </div>
 
           <div class="field">
+            <label class="label">Nº de adultos</label>
+            <div class="control">
+              <input class="input" type="number" placeholder="Número de adultos que irão à festa"
+                v-model="confirmados.numero_adultos">
+            </div>
+          </div>
+          
+          <div class="field">
             <label class="label">Nº de crianças</label>
             <div class="control">
               <input class="input" type="number" placeholder="Número de crianças que irão à festa"
@@ -72,6 +80,7 @@ export default defineComponent({
       confirmados: {
         nome: '',
         telefone: '',
+        numero_adultos: 1,
         numero_criancas: 1,
         observacao: ''
       },
