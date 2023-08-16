@@ -13,7 +13,7 @@
           </div>
 
           <div class="field">
-            <label class="label">Nº de adultos</label>
+            <label class="label">Nº de Adultos</label>
             <div class="control">
               <input class="input" type="number" placeholder="Número de adultos que irão à festa"
                 v-model="confirmados.numero_adultos">
@@ -21,7 +21,7 @@
           </div>
           
           <div class="field">
-            <label class="label">Nº de crianças</label>
+            <label class="label">Nº de Crianças</label>
             <div class="control">
               <input class="input" type="number" placeholder="Número de crianças que irão à festa"
                 v-model="confirmados.numero_criancas">
