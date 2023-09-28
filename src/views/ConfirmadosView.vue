@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-if="confirmados" class="lista-confirmados" v-for="convidados in confirmados">
+        <tr class="lista-confirmados" v-for="convidados in confirmados" :key="convidados.id">
           <th>{{ convidados.nome }}</th>
           <td>{{ convidados.telefone }}</td>
           <td>{{ convidados.numero_criancas }}</td>
@@ -31,7 +31,7 @@ interface exibeDados {
 }
 
 export default defineComponent({
-  name: "Confirmados",
+  name: "ConfirmadosView",
   setup() {
     const confirmados = ref<exibeDados>();
     const total = ref<exibeDados>();

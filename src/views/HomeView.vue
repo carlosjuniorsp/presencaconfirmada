@@ -1,115 +1,140 @@
-
 <template>
   <div class="column-center">
     <div class="columns">
-      <div class="column"> <img alt="Vue logo" class="logo" src="@/assets/convite.jpg" /></div>
-      <form @submit.prevent="salvar">
-        <div class="column">
+      <div class="column"><img alt="Convite" class="logo" src="@/assets/convite.jpg" /></div>
+      <div class="column">
+        <form @submit.prevent="salvar">
           <div class="field">
-            <label class="label">Nome Completo</label>
+            <label class="label">Nome Completo*</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Seu nome Completo" v-model="confirmados.nome">
+              <input
+                class="input"
+                type="text"
+                placeholder="Seu nome Completo"
+                v-model="confirmados.nome"
+              />
             </div>
           </div>
 
           <div class="field">
-            <label class="label">Nº de Adultos</label>
+            <label class="label">Nº de Adultos*</label>
             <div class="control">
-              <input class="input" type="number" placeholder="Número de adultos que irão à festa"
-                v-model="confirmados.numero_adultos">
-            </div>
-          </div>
-          
-          <div class="field">
-            <label class="label">Nº de Crianças</label>
-            <div class="control">
-              <input class="input" type="number" placeholder="Número de crianças que irão à festa"
-                v-model="confirmados.numero_criancas">
+              <input
+                class="input"
+                type="number"
+                placeholder="Número de adultos que irão à festa"
+                v-model="confirmados.numero_adultos"
+              />
             </div>
           </div>
 
           <div class="field">
-            <label class="label">WhatsApp</label>
+            <label class="label">Nº de Crianças*</label>
             <div class="control">
-              <input class="input" maxlength="11" minlength="11" type="tel" placeholder="(11) 9999-9999" v-model="confirmados.telefone">
+              <input
+                class="input"
+                type="number"
+                placeholder="Número de crianças que irão à festa"
+                v-model="confirmados.numero_criancas"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">WhatsApp*</label>
+            <div class="control">
+              <input
+                class="input"
+                maxlength="11"
+                minlength="11"
+                type="tel"
+                placeholder="(11) 9999-9999"
+                v-model="confirmados.telefone"
+              />
             </div>
           </div>
 
           <div class="field">
             <label class="label">Observação</label>
             <div class="control">
-              <textarea class="textarea" placeholder="Observação, caso tenha!"
-                v-model="confirmados.observacao"></textarea>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="termos">
-                Estou de acordo com os <a href="#">termos e condições da festa</a>
-              </label>
+              <textarea
+                class="textarea"
+                placeholder="Observação, caso tenha!"
+                v-model="confirmados.observacao"
+              ></textarea>
             </div>
           </div>
 
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-link">Confirmar Presença</button>
+              <button class="button is-success" v-if="!loading">Confirmar Presença</button>
+              <button class="button is-link" v-else>Salvando</button>
             </div>
-
+            <div class="background" v-if="loading">
+              <img alt="mario animado" class="imagem_animada" src="@/assets/mario.gif" />
+            </div>
           </div>
-          <br>
-          <span class="msgs">
-            *Ao confirmar sua presença você concorda com os termos da festa
-          </span>
-        </div>
-      </form>
+          <br />
+        </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import api from '@/services/config';
-import Swal from 'sweetalert2';
-import { defineComponent } from 'vue';
-import type { ListaConfirmados } from '@/services/convidados';
+import api from '@/services/config'
+import Swal from 'sweetalert2'
+import { defineComponent } from 'vue'
+import type { ListaConfirmados } from '@/services/convidados'
 
 export default defineComponent({
-  name: "Home",
+  name: 'HomeView',
   data() {
     return {
+      loading: false,
       confirmados: {
+        id: 0,
         nome: '',
         telefone: '',
-        numero_adultos: 1,
+        numero_adultos: 2,
         numero_criancas: 1,
         observacao: ''
       },
-      errors: "",
+      errors: ''
     }
   },
 
   methods: {
     salvar() {
-      let itens: ListaConfirmados = this.confirmados;
-      api.post("confirmados", itens).then((response) => (
-        Swal.fire({
-          title: 'Sua Presença foi Confirmada, Obrigado!',
-          padding: '3em',
-          width: '600',
-          color: '#333',
-          backdrop:
-            `
-            rgb(237 237 237 / 13%)
-            url("../src/assets/mario.gif")
-            right bottom
-            no-repeat
-          `
+      let itens: ListaConfirmados = this.confirmados
+      this.loading = true
+      api
+        .post('confirmados', itens)
+        .then(
+          () => (
+            (this.loading = false),
+            this.limpaCampos(),
+            Swal.fire({
+              title: 'Sua Presença foi Confirmada, Obrigado!',
+              padding: '3em',
+              width: '600',
+              color: '#333'
+            })
+          )
+        )
+        .catch((error) => {
+          this.loading = false
+          Swal.fire(error.response.data.message)
         })
-      )).catch((error) => {
-        Swal.fire(error.response.data.message);
-      });
+    },
+    limpaCampos() {
+      ;(this.confirmados.id = 0),
+        (this.confirmados.nome = ''),
+        (this.confirmados.telefone = ''),
+        (this.confirmados.numero_adultos = 2),
+        (this.confirmados.numero_criancas = 1),
+        (this.confirmados.observacao = '')
     }
   }
-});
-
+})
 </script>
