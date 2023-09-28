@@ -32,6 +32,9 @@ input[type="number"],
   background-color: #49c738 !important;
 }
 
+.background{
+  float: right;
+}
 @media screen and (min-width: 375px) {
   .column-center {
     width: 98%;
@@ -43,11 +46,19 @@ input[type="number"],
     width: 100%;
     display: inline-block;
   }
+
+  .background{
+    width: 100px;
+  }
 }
 
 
 @media screen and (min-width: 1024px) {
   .column-center {
     width: 52.5%;
+  }
+
+  .background{
+    width: 200px;
   }
 }

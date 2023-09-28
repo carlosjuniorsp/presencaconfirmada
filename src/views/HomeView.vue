@@ -65,14 +65,12 @@
             </div>
           </div>
 
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-success" v-if="!loading">Confirmar Presença</button>
-              <button class="button is-link" v-else>Salvando</button>
-            </div>
+          <div class="control">
             <div class="background" v-if="loading">
               <img alt="mario animado" class="imagem_animada" src="@/assets/mario.gif" />
             </div>
+            <button class="button is-success" v-if="!loading">Confirmar Presença</button>
+            <button class="button is-link" v-else>Salvando</button>
           </div>
           <br />
         </form>
