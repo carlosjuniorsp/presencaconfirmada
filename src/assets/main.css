@@ -18,7 +18,7 @@ input[type="text"],
 input[type="tel"],
 input[type="number"],
 .textarea {
-  border: 2px solid #079afe !important;
+  border: 2px solid #9f3422 !important;
 }
 
 .logo {
@@ -29,12 +29,13 @@ input[type="number"],
 }
 
 .button.is-success {
-  background-color: #49c738 !important;
+  background-color: #14f00e !important;
 }
 
-.background{
+.background {
   float: right;
 }
+
 @media screen and (min-width: 375px) {
   .column-center {
     width: 98%;
@@ -47,7 +48,7 @@ input[type="number"],
     display: inline-block;
   }
 
-  .background{
+  .background {
     width: 100px;
   }
 }
@@ -58,7 +59,7 @@ input[type="number"],
     width: 52.5%;
   }
 
-  .background{
+  .background {
     width: 200px;
   }
 }

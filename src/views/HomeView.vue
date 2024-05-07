@@ -1,7 +1,7 @@
 <template>
   <div class="column-center">
     <div class="columns">
-      <div class="column"><img alt="Convite" class="logo" src="@/assets/convite.jpg" /></div>
+      <div class="column"><img alt="Convite" class="logo" src="@/assets/convite.jpeg" /></div>
       <div class="column">
         <form @submit.prevent="salvar">
           <div class="field">
