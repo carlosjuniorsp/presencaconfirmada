@@ -66,9 +66,6 @@
           </div>
 
           <div class="control">
-            <div class="background" v-if="loading">
-              <img alt="mario animado" class="imagem_animada" src="@/assets/mario.gif" />
-            </div>
             <button class="button is-success" v-if="!loading">Confirmar Presença</button>
             <button class="button is-link" v-else>Salvando</button>
           </div>
@@ -107,7 +104,7 @@ export default defineComponent({
       let itens: ListaConfirmados = this.confirmados
       this.loading = true
       api
-        .post('confirmados', itens)
+        .post('', itens)
         .then(
           () => (
             (this.loading = false),
